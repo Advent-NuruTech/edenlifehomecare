@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { products } from "@/data/products";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, limit, Timestamp } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import Card from '../components/Card';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,8 +14,15 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 
+interface Testimony {
+  id: string;
+  name: string;
+  message: string;
+  createdAt?: Timestamp;
+}
+
 export default function HomePage() {
-  const [testimonies, setTestimonies] = useState<Array<{ id: string; name: string; message: string; createdAt?: unknown }>>([]);
+  const [testimonies, setTestimonies] = useState<Testimony[]>([]);
 
  
 
@@ -23,7 +30,7 @@ export default function HomePage() {
     const fetchTestimonies = async () => {
       const q = query(collection(db, 'testimonies'), orderBy('createdAt', 'desc'), limit(4));
       const snapshot = await getDocs(q);
-      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as { id: string; name: string; message: string }));
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Testimony));
       setTestimonies(data);
     };
     fetchTestimonies();
