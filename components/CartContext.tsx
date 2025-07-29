@@ -6,6 +6,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 export type CartItem = {
   id: string;
   name: string;
+  slug?: string; // ← add this if you use it
+  category?: 'herbs' | 'oils' | 'books'; // optional
   price: number;
   image: string;
   qty: number;

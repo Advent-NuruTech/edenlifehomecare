@@ -22,12 +22,21 @@ export default function Navbar() {
   return (
     <header className={`fixed w-full z-50 transition-all ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-white/90 shadow-sm py-3'}`}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/assets/edenlife official logo.jpg" alt="Logo" width={40} height={40} />
-          <span className="text-xl font-bold text-green-700">EdenLife</span>
-        </Link>
-
+      
+          {/* Logo and Brand */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative w-10 h-10 md:w-12 md:h-12">
+              <Image
+                src="/assets/edenlife official logo.jpg"
+                alt="NuruTech Logo"
+                fill
+                className="rounded-full object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-green-600 to-cyan-500 bg-clip-text text-transparent">
+              Edenlife Homecare
+            </span>
+          </Link>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/" className="text-gray-700 hover:text-green-700 transition-colors font-medium">
@@ -45,7 +54,7 @@ export default function Navbar() {
           <Link href="/checkout" className="relative">
             <ShoppingCart className="w-6 h-6 text-gray-700 hover:text-green-700" />
             {getCartCount() > 0 && (
-              <span className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                 {getCartCount()}
               </span>
             )}
@@ -57,10 +66,10 @@ export default function Navbar() {
           <Link href="/checkout" className="relative">
             <ShoppingCart className="w-6 h-6 text-gray-700 hover:text-green-700" />
             {getCartCount() > 0 && (
-              <span className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                 {getCartCount()}
               </span>
-            )}
+            )}  
           </Link>
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}

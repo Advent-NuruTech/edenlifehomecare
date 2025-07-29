@@ -20,9 +20,9 @@ type Contact = {
 type Order = {
   name: string;
   phone: string;
-  items: any[];
+  items: { name: string; price: number }[];
   total: number;
-  date: any;
+  date: Timestamp;
 };
 
 type Testimony = {
@@ -71,8 +71,8 @@ export default function AdminDashboard() {
         timestamp: Timestamp.now()
       });
       setTestimony({ name: '', testimony: '' });
-    } catch (err) {
-      console.error('Error submitting testimony:', err);
+    } catch (error) {
+      console.error('Error submitting testimony:', error);
     }
     setSubmitting(false);
   };
@@ -133,7 +133,7 @@ export default function AdminDashboard() {
               <p><strong>Phone:</strong> {o.phone}</p>
               <p><strong>Total:</strong> Ksh {o.total}</p>
               <ul className="list-disc pl-5 mt-1">
-                {o.items.map((item: any, idx: number) => (
+                {o.items.map((item, idx) => (
                   <li key={idx}>{item.name} - Ksh {item.price}</li>
                 ))}
               </ul>

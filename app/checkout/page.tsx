@@ -12,18 +12,6 @@ type CartItem = {
   qty: number;
 };
 
-const getOrderStatusColor = (status: string) => {
-  switch (status) {
-    case 'completed':
-      return 'border-green-200 bg-green-50';
-    case 'cancelled':
-      return 'border-red-200 bg-red-50';
-    case 'processing':
-      return 'border-blue-200 bg-blue-50';
-    default:
-      return 'border-gray-200 bg-gray-50';
-  }
-};
 
 export default function CheckoutPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -31,9 +19,9 @@ export default function CheckoutPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]') as (CartItem & { id?: string })[];
     // Add unique IDs to each cart item if they don't exist
-    const cartWithIds = storedCart.map((item: any) => ({
+    const cartWithIds = storedCart.map((item) => ({
       ...item,
       id: item.id || Math.random().toString(36).substring(2, 9)
     }));
@@ -210,9 +198,10 @@ export default function CheckoutPage() {
                 After submitting this form, please pay using the following details:
               </p>
               <ul className="text-sm text-gray-800 mt-1 space-y-1">
-                <li><strong>M-Pesa Number:</strong> 0712345678</li>
-                <li><strong>Paybill:</strong> 123456</li>
-                <li><strong>Account:</strong> Your Name</li>
+                <li><strong>M-Pesa Number:</strong> 0102930605 </li>
+                <li><strong>Paybill:</strong> 400200</li>
+                <li><strong>Account:</strong> 1051914</li>
+                <li><strong>Business Namee:</strong> EDEN LIFE HOME CARE</li>
               </ul>
             </div>
 

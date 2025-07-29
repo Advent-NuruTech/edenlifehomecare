@@ -16,24 +16,24 @@ const cardVariants: Variants = {
 
 const sections = [
   {
-    title: 'Our Mission',
+    title: 'Who We Are',
     content:
-      'To deliver compassionate, personalized home care that empowers individuals to live with dignity, comfort, and independence within their own homes.',
+      'EDEN LIFE HOME CARE is a registered Community-Based Organisation (CBO) in Kenya, recognized as a Center of Excellence dedicated to palliative health care and community empowerment through holistic, compassionate, and accessible services.',
   },
   {
     title: 'Our Vision',
     content:
-      'To be the most trusted and reliable provider of home care solutions in Kenya, setting a standard for excellence in health, service, and humanity.',
+      'To alleviate suffering and promote wellness within the community by delivering high-quality palliative care, chronic illness management, and sustainable empowerment initiatives.',
   },
   {
-    title: 'Our Core Values',
-    content:
-      'Compassion, Integrity, Respect, Excellence, and Commitment. These values guide every aspect of our service delivery.',
-  },
-  {
-    title: 'Why Choose EdenLife?',
-    content:
-      'We blend professional expertise with heartfelt care. Our trained caregivers treat every client like family, ensuring safety, comfort, and happiness every step of the way.',
+    title: 'Our Objectives',
+    content: `
+1. Provide Specialized Care – To deliver compassionate care and treatment to individuals living with chronic illnesses.
+
+2. Empower and Educate – To reduce suffering in the community through comprehensive support and education, in order to combat lifestyle-related illiteracy and raise awareness of health challenges.
+
+3. Promote Holistic Wellness – To support and empower individuals through natural therapies, lifestyle coaching, and integrated holistic wellness programs that are inclusive and accessible to all.
+    `,
   },
 ];
 
@@ -41,10 +41,9 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen px-4 py-12 md:px-20 bg-gray-50">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-green-700 mb-4">About EdenLife Home Care</h1>
+        <h1 className="text-4xl font-bold text-green-700 mb-4">EDEN LIFE HOME CARE</h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          At EdenLife, we believe everyone deserves care that is thoughtful, respectful, and empowering.
-          We bring medical and non-medical services to the comfort of your home.
+          Community-Based Organisation (CBO) – Healing Naturally. Living Fully.
         </p>
       </div>
 
@@ -52,7 +51,7 @@ export default function AboutPage() {
         {sections.map((section, index) => (
           <motion.div
             key={index}
-            className="rounded-2xl bg-white p-6 shadow-lg border-l-4 border-green-500"
+            className="rounded-2xl bg-white p-6 shadow-lg border-l-4 border-green-500 whitespace-pre-line"
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
@@ -65,31 +64,7 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <div className="mt-16 text-center">
-        <h2 className="text-2xl font-semibold text-green-700 mb-4">Meet Our Team</h2>
-        <p className="text-gray-600 mb-8">
-          Behind EdenLife is a dedicated team of caregivers, nurses, coordinators, and health professionals—
-          committed to making a real difference in the lives we touch.
-        </p>
-        <div className="flex flex-wrap justify-center gap-6">
-          {['Grace – Founder & Director', 'John – Care Coordinator', 'Mary – Nurse-in-Charge'].map(
-            (member, i) => (
-              <motion.div
-                key={i}
-                className="bg-white shadow-md p-4 rounded-xl w-64 border-t-4 border-green-500"
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                custom={i + 1}
-              >
-                <h3 className="text-lg font-semibold text-green-700">{member}</h3>
-                <p className="text-sm text-gray-500">Professional & Compassionate</p>
-              </motion.div>
-            )
-          )}
-        </div>
-      </div>
+      
     </main>
   );
 }

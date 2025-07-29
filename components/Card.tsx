@@ -23,7 +23,7 @@ export default function Card({
 }: ProductCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
-      <div className="relative w-full h-48">
+      <div className="relative w-full h-80">
         <Image
           src={images[0]}
           alt={name}

@@ -11,7 +11,8 @@ import {
   serverTimestamp,
   query,
   orderBy,
-  deleteDoc
+  deleteDoc,
+  Timestamp
 } from 'firebase/firestore';
 
 interface Contact {
@@ -21,25 +22,14 @@ interface Contact {
   phone: string;
   message: string;
   response?: string;
-  createdAt: any;
-  status: 'pending' | 'responded';
-}
-
-interface Contact {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  response?: string;
-  createdAt: any;
+  createdAt: Timestamp | null;
   status: 'pending' | 'responded';
 }
 interface Testimony {
   id: string;
   name: string;
   message: string;
-  createdAt: any;
+  createdAt: Timestamp | null;
   approved: boolean;
 }
 
@@ -51,7 +41,7 @@ interface Order {
   items: { productName: string; quantity: number }[];
   total: number;
   note?: string;
-  createdAt: any;
+  createdAt: Timestamp | null;
   status: 'pending' | 'processing' | 'completed' | 'cancelled';
 }
 
@@ -75,7 +65,6 @@ export default function AdminDashboard() {
 
   // Filter states
   const [contactFilter, setContactFilter] = useState<'all' | 'pending' | 'responded'>('all');
-  const [bookingFilter, setBookingFilter] = useState<'all' | 'pending' | 'processing' | 'completed' | 'cancelled'>('all');
   const [testimonyFilter, setTestimonyFilter] = useState<'all' | 'approved' | 'pending'>('all');
   const [orderFilter, setOrderFilter] = useState<'all' | 'pending' | 'processing' | 'completed' | 'cancelled'>('all');
 
@@ -88,7 +77,7 @@ export default function AdminDashboard() {
       const data: Contact[] = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as Contact[];
+      } as Contact));
       setContacts(data);
       setLoading(prev => ({ ...prev, contacts: false }));
     });
@@ -101,7 +90,7 @@ export default function AdminDashboard() {
       const data: Testimony[] = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as Testimony[];
+      } as Testimony));
       setTestimonies(data);
       setLoading(prev => ({ ...prev, testimonies: false }));
     });
@@ -114,7 +103,7 @@ export default function AdminDashboard() {
       const data: Order[] = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as Order[];
+      } as Order));
       setOrders(data);
       setLoading(prev => ({ ...prev, orders: false }));
     });
@@ -184,7 +173,7 @@ export default function AdminDashboard() {
   };
 
   // Format date
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp | null) => {
     if (!timestamp) return 'N/A';
     const date = timestamp.toDate();
     return date.toLocaleString();
@@ -224,7 +213,7 @@ export default function AdminDashboard() {
             <div className="flex space-x-2">
               <select
                 value={contactFilter}
-                onChange={(e) => setContactFilter(e.target.value as any)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setContactFilter(e.target.value as typeof contactFilter)}
                 className="p-2 border rounded"
               >
                 <option value="all">All Messages</option>
@@ -267,7 +256,7 @@ export default function AdminDashboard() {
                   <textarea
                     placeholder={contact.response ? 'Update your response...' : 'Write your response...'}
                     defaultValue={contact.response || ''}
-                    onBlur={(e) => respondToContact(contact.id, e.target.value)}
+                    onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => respondToContact(contact.id, e.target.value)}
                     className="w-full mt-3 p-2 border rounded"
                     rows={3}
                   />
@@ -286,7 +275,7 @@ export default function AdminDashboard() {
             <div className="flex space-x-2">
               <select
                 value={testimonyFilter}
-                onChange={(e) => setTestimonyFilter(e.target.value as any)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTestimonyFilter(e.target.value as typeof testimonyFilter)}
                 className="p-2 border rounded"
               >
                 <option value="all">All Testimonies</option>
@@ -356,7 +345,7 @@ export default function AdminDashboard() {
                   <p className="text-sm text-gray-500 mt-1">Posted: {formatDate(testimony.createdAt)}</p>
                   <textarea
                     defaultValue={testimony.message}
-                    onBlur={(e) => updateTestimony(testimony.id, { message: e.target.value })}
+                    onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => updateTestimony(testimony.id, { message: e.target.value })}
                     className="w-full mt-2 p-2 border rounded"
                     rows={3}
                   />
@@ -375,7 +364,7 @@ export default function AdminDashboard() {
             <div className="flex space-x-2">
               <select
                 value={orderFilter}
-                onChange={(e) => setOrderFilter(e.target.value as any)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setOrderFilter(e.target.value as typeof orderFilter)}
                 className="p-2 border rounded"
               >
                 <option value="all">All Orders</option>
@@ -440,7 +429,7 @@ export default function AdminDashboard() {
                   <div className="mt-3 flex space-x-2">
                     <select
                       value={order.status}
-                      onChange={(e) => updateOrderStatus(order.id, e.target.value as Order['status'])}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateOrderStatus(order.id, e.target.value as Order['status'])}
                       className="p-2 border rounded text-sm"
                     >
                       <option value="pending">Pending</option>
