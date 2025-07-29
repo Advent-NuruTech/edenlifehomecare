@@ -25,6 +25,21 @@ type Order = {
   date: Timestamp;
 };
 
+interface ContactData {
+  name: string;
+  email: string;
+  message: string;
+  timestamp: Timestamp;
+}
+
+interface OrderData {
+  name: string;
+  phone: string;
+  items: { name: string; price: number }[];
+  total: number;
+  date: Timestamp;
+}
+
 type Testimony = {
   name: string;
   testimony: string;
@@ -43,7 +58,7 @@ export default function AdminDashboard() {
     const unsubContacts = onSnapshot(
       query(collection(db, 'contacts'), orderBy('timestamp', 'desc')),
       (snapshot) => {
-        const data = snapshot.docs.map((doc) => doc.data() as Contact);
+        const data = snapshot.docs.map((doc) => doc.data() as ContactData);
         setContacts(data);
       }
     );
@@ -51,7 +66,7 @@ export default function AdminDashboard() {
     const unsubOrders = onSnapshot(
       query(collection(db, 'orders'), orderBy('date', 'desc')),
       (snapshot) => {
-        const data = snapshot.docs.map((doc) => doc.data() as Order);
+        const data = snapshot.docs.map((doc) => doc.data() as OrderData);
         setOrders(data);
       }
     );

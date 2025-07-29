@@ -15,7 +15,7 @@ import 'swiper/css/pagination';
 
 
 export default function HomePage() {
-  const [testimonies, setTestimonies] = useState<Array<{ id: string; name: string; message: string }>>([]);
+  const [testimonies, setTestimonies] = useState<Array<{ id: string; name: string; message: string; createdAt?: unknown }>>([]);
 
  
 

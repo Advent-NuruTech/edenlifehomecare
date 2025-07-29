@@ -12,6 +12,13 @@ interface Testimony {
   createdAt: Timestamp | null;
 }
 
+interface TestimonyData {
+  name: string;
+  message: string;
+  createdAt: Timestamp | null;
+  approved?: boolean;
+}
+
 export default function TestimoniesPage() {
   const [testimonies, setTestimonies] = useState<Testimony[]>([]);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
@@ -21,7 +28,8 @@ export default function TestimoniesPage() {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const results: Testimony[] = [];
       snapshot.forEach((doc) => {
-        results.push({ ...doc.data(), id: doc.id } as Testimony);
+        const data = doc.data() as TestimonyData;
+        results.push({ ...data, id: doc.id } as Testimony);
       });
       setTestimonies(results);
     });

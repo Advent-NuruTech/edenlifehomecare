@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EdenLife Homecare",
     description: "Holistic, compassionate care and products by EdenLife Homecare in Kenya.",
-    url: "https://edenlife.co.ke",
+    url: "https://edenlifehomecare.com",
     siteName: "EdenLife Homecare",
     images: [
       {

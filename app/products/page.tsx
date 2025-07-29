@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { products as allProducts, Product } from '@/data/products';
+import { products as allProducts } from '@/data/products';
+import type { Product } from '@/data/products';
 import ShareButton from '@/components/ShareButtons';
 
 const categories = ['all', 'herbs', 'oils', 'books'] as const;
