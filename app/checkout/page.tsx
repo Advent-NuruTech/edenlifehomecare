@@ -19,7 +19,7 @@ export default function CheckoutPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]') as (CartItem & { id?: string })[];
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]') as CartItem[];
     // Add unique IDs to each cart item if they don't exist
     const cartWithIds = storedCart.map((item) => ({
       ...item,
@@ -184,7 +184,7 @@ export default function CheckoutPage() {
               <label className="block mb-1 font-medium">Order Notes (Optional)</label>
               <textarea
                 name="note"
-                placeholder="Any special instructions?"
+                placeholder="special instructions?"
                 value={form.note}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"

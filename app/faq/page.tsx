@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const faqs = [
   {
     question: "What services does EdenLife Homecare provide?",
-    answer: "We offer management in lifestyle diseases (Cancers, diabetes, arthritis, Ulcers, Hight Blood pressure and many more) and lifestyle consultations focused on holistic healing. We also offer wide range of natural remedies, herbal products, and customized meal plans meeting your conditions. See some of our products on the ",
+    answer: "We offer management in lifestyle diseases (Cancers, diabetes, arthritis, Ulcers, Hight Blood pressure and much more) and lifestyle consultations focused on holistic healing. We also offer wide range of natural remedies, herbal products, and customized meal plans meeting your conditions. See some of our products on the ",
     linkText: "Products Page",
     linkHref: "/products"
   },

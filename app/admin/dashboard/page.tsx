@@ -25,6 +25,7 @@ interface Contact {
   createdAt: Timestamp | null;
   status: 'pending' | 'responded';
 }
+
 interface Testimony {
   id: string;
   name: string;
@@ -44,6 +45,10 @@ interface Order {
   createdAt: Timestamp | null;
   status: 'pending' | 'processing' | 'completed' | 'cancelled';
 }
+
+interface ContactData extends Omit<Contact, 'id'> {}
+interface TestimonyData extends Omit<Testimony, 'id'> {}
+interface OrderData extends Omit<Order, 'id'> {}
 
 
 

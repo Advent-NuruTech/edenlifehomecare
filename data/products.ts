@@ -95,7 +95,7 @@ export const products: Product[] = [
     'Offers comfort – brings peace in times of trouble.',
     'Improves character – transforms the heart and mind.',
     'Inspires devotion – encourages prayer and meditation.',
-    'Unifies believers – trusted translation among many churches.',
+    'Unifies believers – trusted translation among much churches.',
     'Equips for evangelism – clear, direct message of salvation.'
   ]
 },   

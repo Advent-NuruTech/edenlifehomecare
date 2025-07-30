@@ -86,8 +86,8 @@ Our in-patient clients receive supervised care that includes plant-based meals, 
         {/* Conditions We Address */}
         <ServiceSection
           title="🧬 Conditions We Address"
-          summary="We address chronic, lifestyle, and infectious conditions, and many more "
-          details={`🧠 Lifestyle Diseases:\n• Diabetes\n• Hypertension\n• Obesity\n• Cancer (supportive care)\n• Asthma\n• Insomnia\n• Depression\n• Hormonal imbalance\n• Liver/Kidney issues\n\n🦠 Infectious & Acute Diseases:\n• Malaria\n• Pneumonia\n• Typhoid\n• Chronic Fatigue\n• Ulcers\n• Skin Disorders and many more`}
+          summary="We address chronic, lifestyle, and infectious conditions, and much more "
+          details={`🧠 Lifestyle Diseases:\n• Diabetes\n• Hypertension\n• Obesity\n• Cancer (supportive care)\n• Asthma\n• Insomnia\n• Depression\n• Hormonal imbalance\n• Liver/Kidney issues\n\n🦠 Infectious & Acute Diseases:\n• Malaria\n• Pneumonia\n• Typhoid\n• Chronic Fatigue\n• Ulcers\n• Skin Disorders and much more`}
         />
 
         {/* Education & Coaching */}
