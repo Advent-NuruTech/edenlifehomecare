@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next devb ",
     "build": "next build",
+    "pages:build": "next-on-pages build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,14 +22,17 @@
     "swiper": "^11.2.10"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.4.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/date-fns": "^2.5.3",
     "@types/node": "^20.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "15.4.3",
     "tailwindcss": "^4.1.11",
-    "@tailwindcss/postcss": "^4.0.0",
     "typescript": "^5.0.0"
   }
 }

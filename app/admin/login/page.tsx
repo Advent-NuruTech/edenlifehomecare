@@ -18,7 +18,7 @@ export default function AdminLogin() {
     try {
       // Simple authentication - in production, use proper auth
       if (
-        credentials.username === "admin" &&
+        credentials.username === "admin" && 
         credentials.password === "edenlife2024"
       ) {
         localStorage.setItem("adminAuth", "true");
